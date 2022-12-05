@@ -1,0 +1,81 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<main class="create-trip layout">
+  <div class="container">
+    <div class="layout__box">
+      <div class="layout__boxHeader">
+        <div class="layout__boxTitle">
+          <a href="{{request.META.HTTP_REFERER}}">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <title>arrow-left</title>
+              <path
+                d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z">
+              </path>
+            </svg>
+          </a>
+          <h3>Create/Update Trip</h3>
+        </div>
+      </div>
+      <div class="layout__body">
+        <form class="form" action="" method="POST">
+          {% csrf_token %}
+          <div class="form__group">
+            <label for="trip_title">Trip Title</label>
+            {{form.title}}
+          </div>
+
+          <div class="form__group">
+            <label for="trip_type">Type</label>
+            <input required type="text" value="{{trip.type.name}}" name="type" id="trip_type" list="type-list" />
+            <datalist id="type-list">
+              <select id="trip_type">
+                {% for type in types %}
+                <option value="{{type.name}}">{{type.name}}</option>
+                {% endfor %}
+              </select>
+            </datalist>
+          </div>
+
+          <div class="form__group">
+            <label for="trip_start_loc">Start Location</label>
+            {{form.start_loc}}
+          </div>
+
+          <div class="form__group">
+            <label for="trip_end_loc">End Location</label>
+            {{form.end_loc}}
+          </div>
+
+          <div class="form__group">
+            <label for="trip_start_date">Start Date</label>
+            {{form.start_date}}
+          </div>
+
+          <div class="form__group">
+            <label for="trip_end_date">End Date</label>
+            {{form.end_date}}
+          </div>
+
+          <div class="form__group">
+            <label for="trip_description">Description</label>
+            {{form.description}}
+          </div>
+
+          <div class="form__action">
+            <a class="btn btn--dark" href="{{request.META.HTTP_REFERER}}">Cancel</a>
+            <button class="btn btn--main" type="submit">Submit Trip</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+
+{% endblock content %}
+
+
+{% for field in form %}
+{% endfor %}
