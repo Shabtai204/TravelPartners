@@ -141,9 +141,6 @@ def create_trip(request):
 
 @login_required(login_url="login")
 def update_trip(request, trip_slug):
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-    print(trip_slug)
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     trip = Trip.objects.get(slug=trip_slug)
     form = TripForm(instance=trip)
     types = Type.objects.all()
